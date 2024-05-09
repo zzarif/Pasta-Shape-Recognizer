@@ -14,7 +14,7 @@ The types are following: <br/>
 6. Farfalle (Bow Tie)
 7. Linguine
 8. Tagliatelle
-9. Lasagne
+9. Lasagna
 10. Ravioli
 11. Tortellini
 12. Orecchiette
