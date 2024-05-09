@@ -23,6 +23,38 @@ The types are following: <br/>
 19. Cavatappi
 20. Gemelli
 
+## Build from Source
+### Install CUDA Toolkit
+- Go to the NVIDIA CUDA Toolkit download page: https://developer.nvidia.com/cuda-downloads
+- Select "Windows" as the operating system and choose the appropriate version and installer type.
+- Download and run the installer, following the installation instructions.
+
+### Initialize and activate virtual environment
+```bash
+virtualenv --no-site-packages venv
+source venv/Scripts/activate
+```
+
+### Install PyTorch with CUDA support
+- Run the following command to install PyTorch with CUDA support using pip:
+```bash
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+```
+*Note: Replace cu121 with the appropriate CUDA version tag that matches your installed CUDA version (e.g., cu121 for CUDA 12.1).*
+
+### Verify the installation:
+- Run the following code to check if PyTorch is using the GPU:
+```bash
+import torch
+print(torch.cuda.is_available())
+```
+- If the output is `True`, then PyTorch is successfully set up to use the GPU.
+
+### Install Dependencies
+```bash
+pip3 install fastai fastbook nbdev
+```
+
 # Dataset Preparation
 **Data Collection:** Downloaded from DuckDuckGo using term name <br/>
 **DataLoader:** Used fastai DataBlock API to set up the DataLoader. <br/>
