@@ -2,11 +2,22 @@
 title: Pasta Shape Recognizer
 layout: page
 ---
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pasta Shape Recognizer</title>
-  </head>
-  <body><h1>Pasta Shape Recognizre</h1></body>
-</html>
+
+<input id="photo" type="file">
+<div id="results"></div>
+<script type = "module">
+    import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@0.1.4/dist/index.min.js";
+    
+    async function loaded(reader) {  
+        const app = await client("https://zzarif-pasta-shape-recognizer.hf.space/--replicas/awmf4/");
+        const response = await app.predict("/predict", [reader.result]);
+        const label = response['data'][0]['label'];
+        results.innerHTML = `<br/> <img src = "${reader.result}" width="500"> <p>${label}</p>`;
+    }
+    function read() {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => loaded(reader))
+        reader.readAsDataURL(photo.files[0]);
+    }
+    photo.addEventListener('input', read);
+</script>
