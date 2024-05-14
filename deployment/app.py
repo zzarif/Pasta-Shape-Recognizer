@@ -1,6 +1,12 @@
 from fastai.vision.all import *
 import gradio as gr
 
+import platform
+import pathlib
+plt = platform.system() 
+if plt == 'Linux': 
+    pathlib.WindowsPath = pathlib.PosixPath
+    
 pasta_shape_labels = (
     "bucatini",
     "cannelloni",

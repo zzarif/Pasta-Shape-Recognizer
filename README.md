@@ -73,18 +73,20 @@ pip3 install fastai fastbook nbdev gradio
 
 ## Dataset Preparation
 
-**Data Collection:** Downloaded from DuckDuckGo using term name.
-**DataLoader:** Used fastai DataBlock API to set up the DataLoader.
-**Data Augmentation:** fastai provides default data augmentation which operates in GPU.
-Details can be found in `notebooks/data_prep.ipynb`
+- **Data Collection:** The code collects images for each pasta shape by searching for them using the DuckDuckGo search engine and downloading the images to corresponding folders in the [data](data/) directory. It then verifies the downloaded images and removes any failed downloads.
+- **DataLoader:** The code creates a DataBlock, which defines the structure of the data, including the image and label blocks, data splitting strategy, and image transformations. It then creates a DataLoader (dls) using the DataBlock, specifying the path to the data and the batch size.
+- **Data Augmentation:** The code applies data augmentation techniques to the images using RandomResizedCrop, which randomly crops and resizes the images to a specified size (224x224) with a minimum scaling factor of 0.5. Additional augmentation transforms are applied using aug_transforms() to further enhance the variety of the training data.
+Details can be found in [data_prep.ipynb](notebooks/data_prep.ipynb)
 
 ## Training and Data Cleaning
 
-**Training:** Fine-tuned a `resnet34` model for 9 epochs (5+2+2) and got upto **~85.6%** accuracy.
-**Data Cleaning:** This part took the highest time. Since I collected data from browser, there were many noises. Also, there were images that contained. I cleaned and updated data using fastai ImageClassifierCleaner. I cleaned the data each time after training or finetuning, except for the last time which was the final iteration of the model.
+- **Training:** The model is trained using a ResNet34 architecture with a 90-10 train-validation split, and fine-tuned for 5 epochs initially, achieving `~75%` accuracy. After data cleaning, the model is fine-tuned for 2 more epochs, reaching `79.5%` accuracy, and then further fine-tuned for 2 epochs, achieving a satisfactory accuracy of `~85.6%`.
+- **Data Cleaning:** The `ImageClassifierCleaner` is used to identify and remove irrelevant data points from the dataset. The data points that need to be relabeled are moved to the correct directories, ensuring the dataset's integrity and improving the model's performance.
+Details can be found in [training_and_data_cleaning.ipynb](notebooks/training_and_data_cleaning.ipynb)
 
 ## Model Deployment
-I deployed the model to HuggingFace Spaces Gradio App. The implementation can be found in `deployment` folder or [here](https://huggingface.co/spaces/zzarif/Pasta-Shape-Recognizer).
+The model is deployed to HuggingFace Spaces Gradio App. The implementation can be found in [deployment](deployment/) folder or [here](https://huggingface.co/spaces/zzarif/Pasta-Shape-Recognizer).
+### Classifying `fusilli` pasta
 ![Pasta-Shape-Recognizer](deployment/deployed_model_hf_spaces.png)
 
 ## API integration with GitHub Pages
