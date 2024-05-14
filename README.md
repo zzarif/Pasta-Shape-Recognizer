@@ -81,3 +81,9 @@ The deployed model API is integrated [here](https://zzarif.github.io/Pasta-Shape
 
 ### Contact Me
 Would appreciate your feedback. For any further queries feel free to reach out to me at [zibran.zarif.amio@gmail.com](mailto:zibran.zarif.amio@gmail.com)
+
+<style>
+    table {
+        width: 100%;
+    }
+</style>
