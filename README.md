@@ -2,7 +2,7 @@
 
 An image classification model that utilizes data collection, augmentation, model training, cleaning, deployment and API integration to classify 20 different types of pasta shapes. The types are following:
 
-<table>
+<table style="width: 100%;">
     <tr>
         <td>1. Spaghetti</td>
         <td>2. Fettuccine</td>
