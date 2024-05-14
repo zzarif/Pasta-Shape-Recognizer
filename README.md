@@ -29,14 +29,14 @@ The model can classify 20 different types of pasta shapes. The types are followi
 ### Install CUDA Toolkit
 
 - Go to the NVIDIA CUDA Toolkit download page: https://developer.nvidia.com/cuda-downloads
-<!-- - Select "Windows" as the operating system and choose the appropriate version and installer type. -->
+- Select "Windows" as the operating system and choose the appropriate version and installer type.
 - Download and run the installer, following the installation instructions.
 
 ### Initialize and activate virtual environment
 
 ```bash
 virtualenv --no-site-packages venv
-source ./venv/Scripts/activate
+source venv/Scripts/activate
 ```
 
 ### Install PyTorch with CUDA support
@@ -58,31 +58,30 @@ import torch
 print(torch.cuda.is_available())
 ```
 
-If the output is `True`, then PyTorch is successfully set up to use the GPU.
+If the output is `True`, then PyTorch is successfully set up to use the GPU.  `torch.cuda.get_device_name(0)` should also show your GPU config.
 
 ### Install Dependencies
 
 ```bash
-pip3 install fastai fastbook nbdev
+pip3 install fastai fastbook nbdev gradio
 ```
 
-# Dataset Preparation
+## Dataset Preparation
 
-**Data Collection:** Downloaded from DuckDuckGo using term name <br/>
-**DataLoader:** Used fastai DataBlock API to set up the DataLoader. <br/>
-**Data Augmentation:** fastai provides default data augmentation which operates in GPU. <br/>
+**Data Collection:** Downloaded from DuckDuckGo using term name.
+**DataLoader:** Used fastai DataBlock API to set up the DataLoader.
+**Data Augmentation:** fastai provides default data augmentation which operates in GPU.
 Details can be found in `notebooks/data_prep.ipynb`
 
-# Training and Data Cleaning
+## Training and Data Cleaning
 
-**Training:** Fine-tuned a resnet34 model for 5 epochs (3 times) and got upto ~89% accuracy. <br/>
-**Data Cleaning:** This part took the highest time. Since I collected data from browser, there were many noises. Also, there were images that contained. I cleaned and updated data using fastai ImageClassifierCleaner. I cleaned the data each time after training or finetuning, except for the last time which was the final iteration of the model. <br/>
+**Training:** Fine-tuned a `resnet34` model for 9 epochs (5+2+2) and got upto **~85.6%** accuracy.
+**Data Cleaning:** This part took the highest time. Since I collected data from browser, there were many noises. Also, there were images that contained. I cleaned and updated data using fastai ImageClassifierCleaner. I cleaned the data each time after training or finetuning, except for the last time which was the final iteration of the model.
 
-# Model Deployment
+## Model Deployment
+I deployed the model to HuggingFace Spaces Gradio App. The implementation can be found in `deployment` folder or [here](https://huggingface.co/spaces/zzarif/Pasta-Shape-Recognizer).
+![Pasta-Shape-Recognizer](deployment/deployed_model_hf_spaces.png)
 
-I deployed to model to HuggingFace Spaces Gradio App. The implementation can be found in `deployment` folder or [here](https://huggingface.co/spaces/msideadman/cap-recognizer). <br/>
-<img src = "deployment/gradio_app.png" width="700" height="350">
+## API integration with GitHub Pages
 
-# API integration with GitHub Pages
-
-The deployed model API is integrated [here](msi1427.github.io/Cap-Recognizer/) in GitHub Pages Website. Implementation and other details can be found in `docs` folder.
+The deployed model API is integrated [here](https://zzarif.github.io/Pasta-Shape-Recognizer/) in GitHub Pages Website. Implementation and other details can be found in `docs` folder.
