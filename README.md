@@ -85,3 +85,6 @@ I deployed the model to HuggingFace Spaces Gradio App. The implementation can be
 ## API integration with GitHub Pages
 
 The deployed model API is integrated [here](https://zzarif.github.io/Pasta-Shape-Recognizer/) in GitHub Pages Website. Implementation and other details can be found in `docs` folder.
+
+### Contact Me
+Would appreciate your feedback. For any further queries feel free to reach out to me at [zibran.zarif.amio@gmail.com](mailto:zibran.zarif.amio@gmail.com)
