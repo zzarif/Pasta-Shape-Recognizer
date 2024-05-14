@@ -26,6 +26,11 @@ The model can classify 20 different types of pasta shapes. The types are followi
 
 ## Build from Source
 
+### Clone the repo
+```bash
+git clone https://github.com/zzarif/Pasta-Shape-Recognizer.git
+```
+
 ### Install CUDA Toolkit
 
 - Go to the NVIDIA CUDA Toolkit download page: https://developer.nvidia.com/cuda-downloads
