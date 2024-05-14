@@ -1,28 +1,14 @@
 # Pasta Shape Recognizer
 
-An image classification model from data collection, cleaning, model training, deployment and API integration. <br/>
-The model can classify 20 different types of pasta shapes. The types are following: <br/>
+An image classification model that utilizes data collection, augmentation, model training, cleaning, deployment and API integration to classify 20 different types of pasta shapes. The types are following:
 
-1. Spaghetti
-2. Fettuccine
-3. Penne
-4. Rigatoni
-5. Fusilli
-6. Farfalle
-7. Linguine
-8. Tagliatelle
-9. Lasagna
-10. Ravioli
-11. Tortellini
-12. Orecchiette
-13. Conchiglie
-14. Rotini
-15. Bucatini
-16. Cannelloni
-17. Macaroni
-18. Orzo
-19. Cavatappi
-20. Gemelli
+| | | | |
+|--------------|---------------|--------------|---------------|
+| 1. Spaghetti | 2. Fettuccine | 3. Penne     | 4. Rigatoni   |
+| 5. Fusilli   | 6. Farfalle   | 7. Linguine  | 8. Tagliatelle|
+| 9. Lasagna   | 10. Ravioli   | 11. Tortellini| 12. Orecchiette |
+| 13. Conchiglie| 14. Rotini    | 15. Bucatini | 16. Cannelloni|
+| 17. Macaroni | 18. Orzo      | 19. Cavatappi| 20. Gemelli   |
 
 ## Build from Source
 
