@@ -33,20 +33,20 @@ def recognize_image(image):
 image = gr.inputs.Image(shape=(192,192))
 label = gr.outputs.Label(num_top_classes=5)
 examples = [
-    'app/unknown00.png',
-    'app/unknown01.png',
-    'app/unknown02.png',
-    'app/unknown03.png',
-    'app/unknown04.png',
-    'app/unknown05.png',
-    'app/unknown06.png',
-    'app/unknown07.png',
-    'app/unknown08.png',
-    'app/unknown09.png',
-    'app/unknown10.png',
-    'app/unknown11.png',
-    'app/unknown12.png',
-    'app/unknown13.png'
+    'deployment/unknown00.png',
+    'deployment/unknown01.png',
+    'deployment/unknown02.png',
+    'deployment/unknown03.png',
+    'deployment/unknown04.png',
+    'deployment/unknown05.png',
+    'deployment/unknown06.png',
+    'deployment/unknown07.png',
+    'deployment/unknown08.png',
+    'deployment/unknown09.png',
+    'deployment/unknown10.png',
+    'deployment/unknown11.png',
+    'deployment/unknown12.png',
+    'deployment/unknown13.png'
 ]
 
 iface = gr.Interface(fn=recognize_image, inputs=image, outputs=label, examples=examples)
