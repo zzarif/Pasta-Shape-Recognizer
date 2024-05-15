@@ -3,7 +3,157 @@ title: Pasta Shape Recognizer
 layout: page
 ---
 
-<input id="photo" type="file">
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Pasta Shape Recognizer</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: "Poppins";
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .image-box {
+        width: 300px;
+        height: 300px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        margin: 20px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .image-box img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+      .button {
+        padding: 10px 20px;
+        font-size: 16px;
+        font-family: "Poppins";
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+      .button:hover {
+        background-color: #45a049;
+      }
+      .textbox {
+        width: 300px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin: 20px auto;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .loading {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ccc;
+        border-top-color: #333;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Pasta Shape Recognizer</h1>
+      <div class="image-box">
+        <img id="selectedImage" src="placeholder.jpg" alt="Selected Image" />
+      </div>
+      <input
+        type="file"
+        id="imageInput"
+        accept="image/*"
+        style="display: none"
+      />
+      <button id="selectButton" class="button">Select Image</button>
+      <button id="classifyButton" class="button" style="display: none">
+        Classify Image
+      </button>
+      <div id="resultBox" class="textbox" style="display: none"></div>
+    </div>
+    <script type="module">
+      const imageInput = document.getElementById("imageInput");
+      const selectedImage = document.getElementById("selectedImage");
+      const selectButton = document.getElementById("selectButton");
+      const classifyButton = document.getElementById("classifyButton");
+      const resultBox = document.getElementById("resultBox");
+
+      selectButton.addEventListener("click", function () {
+        if (selectedImage.src.includes("placeholder.jpg")) {
+          imageInput.click();
+        } else {
+          selectedImage.src = "placeholder.jpg";
+          classifyButton.style.display = "none";
+          resultBox.style.display = "none";
+          selectButton.textContent = "Select Image";
+        }
+      });
+
+      imageInput.addEventListener("change", function () {
+        const file = this.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function () {
+            selectedImage.src = reader.result;
+            classifyButton.style.display = "inline-block";
+            selectButton.textContent = "Clear Image";
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@0.1.4/dist/index.min.js";
+      classifyButton.addEventListener("click", async function () {
+        resultBox.innerHTML = '<div class="loading"></div>';
+        resultBox.style.display = "block";
+        try {
+          const app = await client(
+            "https://zzarif-pasta-shape-recognizer.hf.space/--replicas/awmf4/"
+          );
+          const response = await app.predict("/predict", [imageInput.files[0]]);
+          const label = response["data"][0]["label"];
+          resultBox.innerHTML = `Classified Label: <b>${label}</b>`;
+        } catch (error) {
+          console.error("Error:", error);
+          resultBox.textContent = "An error occurred during classification.";
+        }
+      });
+    </script>
+  </body>
+</html>
+
+<!-- <input id="photo" type="file">
 <div id="results"></div>
 <script type = "module">
     import { client } from "https://cdn.jsdelivr.net/npm/@gradio/client@0.1.4/dist/index.min.js";
@@ -20,4 +170,4 @@ layout: page
         reader.readAsDataURL(photo.files[0]);
     }
     photo.addEventListener('input', read);
-</script>
+</script> -->
