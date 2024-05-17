@@ -1,9 +1,9 @@
-remote_theme: just-the-docs/just-the-docs@main
+remote_theme: sylhare/Type-on-Strap
 plugins:
 - jekyll-remote-theme
 
 title: Pasta Shape Recognizer
-description: An image classification API that classifies 15 different types of pasta shapes
+description: An image recognizer that recognizes 20 different shapes of Pasta.
 
 author:
   name: Zibran Zarif Amio
