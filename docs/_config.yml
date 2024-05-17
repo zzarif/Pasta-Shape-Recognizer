@@ -1,4 +1,4 @@
-remote_theme: daattali/beautiful-jekyll
+remote_theme: wowthemesnet/mediumish-theme-jekyll
 plugins:
 - jekyll-remote-theme
 
