@@ -96,15 +96,27 @@ pip3 install fastai fastbook nbdev gradio
 
 ## Model Deployment
 
-The model is deployed to HuggingFace Spaces Gradio App. The implementation can be found in [deployment](deployment/) folder or [here](https://huggingface.co/spaces/zzarif/Pasta-Shape-Recognizer).
+The model is deployed to HuggingFace Spaces. The implementation can be found in [deployment](deployment/) folder or [here](https://huggingface.co/spaces/zzarif/Pasta-Shape-Recognizer).
 
 ### Classifying `fusilli` pasta
 
 ![Pasta-Shape-Recognizer](deployment/deployed_model_hf_spaces.png)
 
+### Classifying `spaghetti` pasta
+
+![Pasta-Shape-Recognizer](deployment/deployed_model_hf_spaces2.png)
+
+### Classifying `conchiglie` pasta
+
+![Pasta-Shape-Recognizer](deployment/deployed_model_hf_spaces1.png)
+
 ## API integration with GitHub Pages
 
-The deployed model API is integrated [here](https://zzarif.github.io/Pasta-Shape-Recognizer/) in GitHub Pages Website. Implementation and other details can be found in `docs` folder.
+The deployed model is integrated with HuggingFace API [here](https://zzarif.github.io/Pasta-Shape-Recognizer/) in GitHub Pages Website. Implementation and other details can be found in [docs](docs/) folder.
+
+### Classifying `conchiglie` pasta
+
+![Pasta-Shape-Recognizer](docs/pasta_shape_recognizer.png)
 
 ### Contact Me
 
