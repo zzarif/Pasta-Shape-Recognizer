@@ -114,7 +114,7 @@ The model is deployed to HuggingFace Spaces. The implementation can be found in 
 
 The deployed model is integrated with HuggingFace API [here](https://zzarif.github.io/Pasta-Shape-Recognizer/) in GitHub Pages Website. Implementation and other details can be found in [docs](docs/) folder.
 
-### Classifying `conchiglie` pasta
+### Classifying `fusilli` pasta via API
 
 ![Pasta-Shape-Recognizer](docs/pasta_shape_recognizer.png)
 
