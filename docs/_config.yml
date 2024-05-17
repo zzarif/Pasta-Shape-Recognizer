@@ -1,4 +1,4 @@
-remote_theme: wowthemesnet/mediumish-theme-jekyll
+remote_theme: sylhare/Type-on-Strap
 plugins:
 - jekyll-remote-theme
 
