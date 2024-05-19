@@ -33,6 +33,44 @@ An image classification model that utilizes data collection, augmentation, model
     </tr>
 </table>
 
+## Dataset Preparation
+
+- **Data Collection:** The code collects images for each pasta shape by searching for them using the DuckDuckGo search engine and downloading the images to corresponding folders in the [data](data/) directory. It then verifies the downloaded images and removes any failed downloads.
+- **DataLoader:** The code creates a DataBlock, which defines the structure of the data, including the image and label blocks, data splitting strategy, and image transformations. It then creates a DataLoader (dls) using the DataBlock, specifying the path to the data and the batch size.
+- **Data Augmentation:** The code applies data augmentation techniques to the images using RandomResizedCrop, which randomly crops and resizes the images to a specified size (224x224) with a minimum scaling factor of 0.5. Additional augmentation transforms are applied using aug_transforms() to further enhance the variety of the training data.
+ 
+The final dataset has **7.3K+** images of 20 different pasta shapes. Details can be found in [data_prep.ipynb](notebooks/data_prep.ipynb)
+
+## Training and Data Cleaning
+
+- **Training:** The model is trained using a ResNet34 architecture with a 90-10 train-validation split, and fine-tuned for 5 epochs initially, achieving `~75%` accuracy. After data cleaning, the model is fine-tuned for 2 more epochs, reaching `79.5%` accuracy, and then further fine-tuned for 2 epochs, achieving a satisfactory accuracy of `~85.6%`.
+- **Data Cleaning:** The `ImageClassifierCleaner` is used to identify and remove irrelevant data points from the dataset. The data points that need to be relabeled are moved to the correct directories, ensuring the dataset's integrity and improving the model's performance.
+  Details can be found in [training_and_data_cleaning.ipynb](notebooks/training_and_data_cleaning.ipynb)
+
+## Model Deployment
+
+The model is deployed to HuggingFace Spaces. The implementation can be found in [deployment](deployment/) folder or [here](https://huggingface.co/spaces/zzarif/Pasta-Shape-Recognizer).
+
+### Classifying `fusilli` pasta
+
+![Pasta-Shape-Recognizer](deployment/deployed_model_hf_spaces.png)
+
+### Classifying `spaghetti` pasta
+
+![Pasta-Shape-Recognizer](deployment/deployed_model_hf_spaces2.png)
+
+### Classifying `conchiglie` pasta
+
+![Pasta-Shape-Recognizer](deployment/deployed_model_hf_spaces1.png)
+
+## API integration with GitHub Pages
+
+The deployed model is integrated with HuggingFace API [here](https://zzarif.github.io/Pasta-Shape-Recognizer/) in GitHub Pages Website. Implementation and other details can be found in [docs](docs/) folder.
+
+### Classifying `fusilli` pasta via API
+
+![Pasta-Shape-Recognizer](docs/pasta_shape_recognizer.png)
+
 ## Build from Source
 
 ### Clone the repo
@@ -80,43 +118,6 @@ If the output is `True`, then PyTorch is successfully set up to use the GPU. `to
 ```bash
 pip3 install fastai fastbook nbdev gradio
 ```
-
-## Dataset Preparation
-
-- **Data Collection:** The code collects images for each pasta shape by searching for them using the DuckDuckGo search engine and downloading the images to corresponding folders in the [data](data/) directory. It then verifies the downloaded images and removes any failed downloads.
-- **DataLoader:** The code creates a DataBlock, which defines the structure of the data, including the image and label blocks, data splitting strategy, and image transformations. It then creates a DataLoader (dls) using the DataBlock, specifying the path to the data and the batch size.
-- **Data Augmentation:** The code applies data augmentation techniques to the images using RandomResizedCrop, which randomly crops and resizes the images to a specified size (224x224) with a minimum scaling factor of 0.5. Additional augmentation transforms are applied using aug_transforms() to further enhance the variety of the training data.
-  Details can be found in [data_prep.ipynb](notebooks/data_prep.ipynb)
-
-## Training and Data Cleaning
-
-- **Training:** The model is trained using a ResNet34 architecture with a 90-10 train-validation split, and fine-tuned for 5 epochs initially, achieving `~75%` accuracy. After data cleaning, the model is fine-tuned for 2 more epochs, reaching `79.5%` accuracy, and then further fine-tuned for 2 epochs, achieving a satisfactory accuracy of `~85.6%`.
-- **Data Cleaning:** The `ImageClassifierCleaner` is used to identify and remove irrelevant data points from the dataset. The data points that need to be relabeled are moved to the correct directories, ensuring the dataset's integrity and improving the model's performance.
-  Details can be found in [training_and_data_cleaning.ipynb](notebooks/training_and_data_cleaning.ipynb)
-
-## Model Deployment
-
-The model is deployed to HuggingFace Spaces. The implementation can be found in [deployment](deployment/) folder or [here](https://huggingface.co/spaces/zzarif/Pasta-Shape-Recognizer).
-
-### Classifying `fusilli` pasta
-
-![Pasta-Shape-Recognizer](deployment/deployed_model_hf_spaces.png)
-
-### Classifying `spaghetti` pasta
-
-![Pasta-Shape-Recognizer](deployment/deployed_model_hf_spaces2.png)
-
-### Classifying `conchiglie` pasta
-
-![Pasta-Shape-Recognizer](deployment/deployed_model_hf_spaces1.png)
-
-## API integration with GitHub Pages
-
-The deployed model is integrated with HuggingFace API [here](https://zzarif.github.io/Pasta-Shape-Recognizer/) in GitHub Pages Website. Implementation and other details can be found in [docs](docs/) folder.
-
-### Classifying `fusilli` pasta via API
-
-![Pasta-Shape-Recognizer](docs/pasta_shape_recognizer.png)
 
 ### Contact Me
 
